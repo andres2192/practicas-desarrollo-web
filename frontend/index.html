@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practica damian sire desarrollo</title>
+</head>
+<body>
+    <h1>mi aplicacion para gastos</h1>
+
+    <form id="transactionForm">
+        <div class="formField">
+            tipo de transaccion
+            <input id="ingreso" type="radio" name="transactionType" value="ingreso">
+            <label for="ingreso">ingreso</label>
+            <input id="egreso" type="radio" name="transactionType" value="egreso">
+            <label for="egreso">egreso</label>
+        </div>
+        <div>
+            <label for="transactionDescription">description</label>
+            <input id="transactionDescription" name="transactionDescription">
+        </div>
+        <div>
+            <label for="transactionAmount">monto</label>
+            <input id="transactionAmount" name="transactionAmount">
+        </div>
+        <div>
+            <label for="transactionCategory">categoria</label>
+            <input id="transactionCategory" name="transactionCategory">
+        </div>
+        <div class="formField">
+            <button id="botonDeEnvio">añadir</button>
+        </div>
+    </form>
+
+    <div class="tableFormat">
+        <table id="transactionTable">
+            <tr>
+                <th>
+                    tipo
+                </th>
+                <th>
+                    descripcion
+                </th>
+                <th>
+                    monto
+                </th>
+                <th>
+                    categoria
+                </th>
+            </tr>
+        </table>
+    </div>
+
+    <script src="./resources/index.js"></script>
+</body>
+</html>
