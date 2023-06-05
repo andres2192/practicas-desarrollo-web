@@ -1,0 +1,20 @@
+.titulo {
+    text-align: center;
+}
+
+form {
+    text-align: center;
+}
+
+.tituloCategoria{
+    font-size: 15px;
+}
+
+#botonDeEnvio {
+    margin-top: 20px;
+    font-size: 23px;
+}
+
+.tableFormat {
+    text-align: center;
+}

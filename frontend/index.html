@@ -4,55 +4,94 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./resources/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>practica damian sire desarrollo</title>
 </head>
 <body>
-    <h1>mi aplicacion para gastos</h1>
+    <h1 class="titulo">Mi aplicacion para gastos</h1><br>
 
-    <form id="transactionForm">
-        <div class="formField">
-            tipo de transaccion
-            <input id="ingreso" type="radio" name="transactionType" value="ingreso">
-            <label for="ingreso">ingreso</label>
-            <input id="egreso" type="radio" name="transactionType" value="egreso">
-            <label for="egreso">egreso</label>
+    <div class="row">
+        <div class="col l4 offset-l1 s8 offset-s2">
+            <form id="transactionForm">
+                <div class="radio_field">
+                    Tipo de transaccion
+                    <p>
+                        <label>
+                            <input class="with-gap" id="egreso" name="transactionType" value="ingreso" type="radio" required />
+                            <span>Ingreso</span>
+                        </label>
+                        <label>
+                          <input class="with-gap" id="ingreso" name="transactionType" value="egreso" type="radio" />
+                          <span>Egreso</span>
+                        </label>
+                    </p>
+                    <!--
+                    <input id="ingreso" type="radio" name="transactionType" value="ingreso" required>
+                    <label for="ingreso">ingreso</label>
+                    <input id="egreso" type="radio" name="transactionType" value="egreso" required>
+                    <label for="egreso">egreso</label>
+                    -->
+                </div>
+                <div class="description_field">
+                    <!--
+                    <label for="transactionDescription">description</label>
+                    <input id="transactionDescription" name="transactionDescription" required>
+                    -->
+                    <div class="input-field col s6">
+                        <input id="transactionDescription" name="transactionDescription" type="text" class="validate" required>
+                        <label for="transactionDescription">Descripcion</label>
+                    </div>
+                </div>
+                <div class="imput_field">
+                    <!--
+                    <label for="transactionAmount">monto</label>
+                    <input id="transactionAmount" name="transactionAmount" type="number" min="0" required>
+                    -->
+                    <div class="input-field col s6">
+                        <input id="transactionAmount" name="transactionAmount" type="number" min="0" class="validate" required>
+                        <label for="transactionAmount">Monto</label>
+                    </div>
+                </div>
+                <div class="category_field">
+                    <label class="tituloCategoria" for="transactionCategory">Categoria</label>
+                    <select class="browser-default" id="transactionCategory" name="transactionCategory" required>
+                    </select>
+                </div>
+                <div class="button_field">
+                    <button class="btn waves-effect waves-light" id="botonDeEnvio">Añadir</button>
+                </div>
+            </form>
+            <br><br>
         </div>
-        <div>
-            <label for="transactionDescription">description</label>
-            <input id="transactionDescription" name="transactionDescription">
+        
+        <div class="col l5 offset-l1 s10 offset-s1">
+            <div class="tableFormat">
+                Historial de transacciones
+                <table id="transactionTable">
+                    <tr>
+                        <th>
+                            Tipo
+                        </th>
+                        <th>
+                            Descripcion
+                        </th>
+                        <th>
+                            Monto
+                        </th>
+                        <th>
+                            Categoria
+                        </th>
+                        <th>
+                            Eliminar
+                        </th>
+                    </tr>
+                </table>
+            </div>
         </div>
-        <div>
-            <label for="transactionAmount">monto</label>
-            <input id="transactionAmount" name="transactionAmount">
-        </div>
-        <div>
-            <label for="transactionCategory">categoria</label>
-            <input id="transactionCategory" name="transactionCategory">
-        </div>
-        <div class="formField">
-            <button id="botonDeEnvio">añadir</button>
-        </div>
-    </form>
-
-    <div class="tableFormat">
-        <table id="transactionTable">
-            <tr>
-                <th>
-                    tipo
-                </th>
-                <th>
-                    descripcion
-                </th>
-                <th>
-                    monto
-                </th>
-                <th>
-                    categoria
-                </th>
-            </tr>
-        </table>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./resources/index.js"></script>
 </body>
 </html>
