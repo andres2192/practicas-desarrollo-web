@@ -48,6 +48,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
 });
 
+//funcion que obtiene las transacciones guardadas en el backend y las guarda en un 
+//array para mostrarlas en el front
+function getTrnasactionsFromApi() {
+    const allTransactions = [];
+    return allTransactions;
+};
+
 //funcion para generar un id para los datos guardados en el local storage, para que
 //se puedan eliminar
 function newGetTransactionId() {
