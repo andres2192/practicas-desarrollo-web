@@ -39,20 +39,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
     drawCategory();
     
     //traemos lo guardado en el localStorage previamente convertido desde el formato json
-    let transactionObjArr = JSON.parse(localStorage.getItem("transactionData")) || [];
+    //let transactionObjArr = JSON.parse(localStorage.getItem("transactionData")) || [];
 
-    //recorremos el arreglo mediante el metodo .forEach(), y a cada elemento lo inssertamos
-    //en una nueva fila de la tabla del html
-    transactionObjArr.forEach(function (arrayElement) {
-        insertRowInTransactionTable(arrayElement);
-    });
+    //creamos la funcion para traer los datos desde el backend, que quedaran commo un array
+    //establecemos una request con fetch para obtener datos desde el servidor a traves de
+    //la ruta especificada, pero esto necesitaria cumplir con la politioca de mismo origen
+    //para hacer peticiones cliente/servidor, y para esquivar esta politica y que cualquiera
+    //pueda acceder a esta ruta, usamos CORS.
+    //luego los mostramos en la tabla mediante la funcion mostrarEnPantallaArrayDeTransacciones()
+    fetch("http://localhost:3000/transactions").then(res => res.json()).then(data => mostrarEnPantallaArrayDeTransacciones(data));
 });
 
-//funcion que obtiene las transacciones guardadas en el backend y las guarda en un 
-//array para mostrarlas en el front
-function getTrnasactionsFromApi() {
-    const allTransactions = [];
-    return allTransactions;
+//recorremos el arreglotraido desde el backend mediante el metodo .forEach(), y a cada 
+//elemento lo insertamos en una nueva fila de la tabla del html
+function mostrarEnPantallaArrayDeTransacciones(transactionObjArr) {
+    transactionObjArr.forEach(function (arrayElement) {
+        insertRowInTransactionTable(arrayElement);
+    })
 };
 
 //funcion para generar un id para los datos guardados en el local storage, para que
