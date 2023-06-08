@@ -2,9 +2,15 @@
 
 //importamos express(node)
 const express = require('express');
+//importamos cors para poder "esquivar" la politica de comunicacion desde mismo
+//origen entre cliente/servidor
+const cors = require('cors');
 
 //llamamos la funcion express() que ejecuta todo express
 const app = express();
+
+//lamamos la funcion cors() para que se apliquen los requerimientos correspondientes
+app.use(cors());
 
 //definimos el puesrto donde va a recibir las peticiones el servidor
 const port = 3000;
@@ -31,15 +37,22 @@ const transactions = [
       "transactionAmount": "400",
       "transactionCategory": "Diversion",
       "transactionId": 5
+    },
+    {
+      "transactionType": "ingreso",
+      "transactionDescription": "mercado pago",
+      "transactionAmount": "1500",
+      "transactionCategory": "app",
+      "transactionId": 6
     }
 ];
 
-//funcion prueba para mostrar el array de transacciones
+//funcion para mostrar el array de transacciones
 app.get('/transactions', (req, res) => {
     res.send(transactions);
 });
 
-//funcion prueba para mostrar el array de transacciones con el 
+//funcion para mostrar el array de transacciones con el 
 //parametro (id en este caso) que querramos
 app.get('/transactions/:id', (req, res) => {
     const transactionId = req.params.id;
@@ -47,14 +60,7 @@ app.get('/transactions/:id', (req, res) => {
     res.send(selectedTransaction);
 });
 
-//funcion para recibir los datos desde el frontend (sin terminar)
-app.post('/transactions', (req, res) => {
-    const transaction = "aca va la transaccion que vino";
-    transactions.push(transaction);
-    res.send("todo salio ok");
-});
-
-//funcion para prueba de coneccion del servidor en puerto 3000
+//funcion para coneccion del servidor en puerto 3000
 app.listen(port, () => {
   console.log(`corriendo en puerto ${port}`);
 })
