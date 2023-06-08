@@ -47,7 +47,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
     //para hacer peticiones cliente/servidor, y para esquivar esta politica y que cualquiera
     //pueda acceder a esta ruta, usamos CORS.
     //luego los mostramos en la tabla mediante la funcion mostrarEnPantallaArrayDeTransacciones()
-    fetch("http://localhost:3000/transactions").then(res => res.json()).then(data => mostrarEnPantallaArrayDeTransacciones(data));
+    fetch("http://localhost:3000/transactions")
+
+    //con el .then de la promesa, se puede pasar otro parametro, el .catch para tomar el error
+    //si falla la promesa; por eso no lleva el ; al final de la linea
+    .then(res => res.json())
+    .catch(function (error) {
+        console.warn("hubo un error al convertir a JSON");
+        document.getElementById("errorMensaje").innerText = "Hubo un error, actualiza la pagina";
+    })
+    .then(data => mostrarEnPantallaArrayDeTransacciones(data))
+    .catch(function (error) {
+        console.warn("hubo un error al mostrar en pantalla el fetch");
+        document.getElementById("errorMensaje").innerText = "Hubo un error, actualiza la pagina";
+    })
 });
 
 //recorremos el arreglotraido desde el backend mediante el metodo .forEach(), y a cada 
