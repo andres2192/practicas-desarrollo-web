@@ -5,12 +5,17 @@ const express = require('express');
 //importamos cors para poder "esquivar" la politica de comunicacion desde mismo
 //origen entre cliente/servidor
 const cors = require('cors');
+//importar un paquete para manejar los datos json traidos desde el frontend
+//con esto se soluciona el "req.body = undefined" con la peticion post
+const bodyParser = require("body-parser");
 
 //llamamos la funcion express() que ejecuta todo express
 const app = express();
 
 //lamamos la funcion cors() para que se apliquen los requerimientos correspondientes
 app.use(cors());
+
+app.use(bodyParser.json());
 
 //definimos el puesrto donde va a recibir las peticiones el servidor
 const port = 3000;
@@ -60,7 +65,19 @@ app.get('/transactions/:id', (req, res) => {
     res.send(selectedTransaction);
 });
 
+//funcion para recibir los datos desde el frontend
+app.post("/transactions", (req, res) => {
+  //se reciben los datos y se muestran en pantalla
+  let data = req.body;
+  console.log(data);
+  //se guardan los datos traidos en una variable
+  //const transaction = "aca va la transaction que vino";
+  //pusheamos los datos en el array "transactions"
+  //transactions.push(transaction);
+  res.send("todo recibido");
+});
+
 //funcion para coneccion del servidor en puerto 3000
 app.listen(port, () => {
   console.log(`corriendo en puerto ${port}`);
-})
+});
