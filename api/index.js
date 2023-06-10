@@ -7,7 +7,7 @@ const express = require('express');
 const cors = require('cors');
 //importar un paquete para manejar los datos json traidos desde el frontend
 //con esto se soluciona el "req.body = undefined" con la peticion post
-const bodyParser = require("body-parser");
+//const bodyParser = require("body-parser");
 
 //llamamos la funcion express() que ejecuta todo express
 const app = express();
@@ -15,7 +15,11 @@ const app = express();
 //lamamos la funcion cors() para que se apliquen los requerimientos correspondientes
 app.use(cors());
 
-app.use(bodyParser.json());
+//aca usa "app.use(express.json())", que yo no lo tenia escrito en el codigo antes de
+//buscar y terminar instalando el npm bodyParser para el error del req.body undefined
+//y si funciona
+//app.use(bodyParser.json());
+app.use(express.json());
 
 //definimos el puesrto donde va a recibir las peticiones el servidor
 const port = 3000;
@@ -69,11 +73,10 @@ app.get('/transactions/:id', (req, res) => {
 app.post("/transactions", (req, res) => {
   //se reciben los datos y se muestran en pantalla
   let data = req.body;
-  console.log(data);
   //se guardan los datos traidos en una variable
-  //const transaction = "aca va la transaction que vino";
+  const transaction = data;
   //pusheamos los datos en el array "transactions"
-  //transactions.push(transaction);
+  transactions.push(transaction);
   res.send("todo recibido");
 });
 
