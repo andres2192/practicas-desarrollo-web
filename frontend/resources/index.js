@@ -164,20 +164,31 @@ function saveTransactionObjet(transactionObjet) {
     //objetos que formemos al enviar el formulario en un arreglo de objetos
     //debemos desconvertirlo del formato json para poder trabajar con el array
     //por defecto si no hay un json preexistente guardado, agarra un array vacio
-    let myTransactionArray = JSON.parse(localStorage.getItem("transactionData")) || [];
+    //let myTransactionArray = JSON.parse(localStorage.getItem("transactionData")) || [];
 
     //agregamos el nuevo objeto del formulario en el arreglo existente
-    myTransactionArray.push(transactionObjet);
+    //myTransactionArray.push(transactionObjet);
 
     //JSON.stringify(): funcion nativa para transformar al formato JSON
-    let transactionArrayJSON = JSON.stringify(myTransactionArray);
+    //let transactionArrayJSON = JSON.stringify(myTransactionArray);
 
     //funcion nativa para guardar el json en la memoria local. la funcion tiene dos
     //parametros: el nombre que sera la clave para referencia, y el valor a guardar
-    localStorage.setItem("transactionData", transactionArrayJSON);
+    //localStorage.setItem("transactionData", transactionArrayJSON);
+
+    //aca, en vez de la funcion para guardar los datos en el localStorage, creamos un
+    //fetch para mandar estos mismos datos ya guardados en formato json hacia el backend
+    fetch("http://localhost:3000/transactions", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(transactionObjet),
+    });
 };
 
 //funcion para eliminar objetos del localStorage
+//ACA HAY QUE MODIFICARLA PARA QUE BORRE LOS DATOS GUARDADOS EN EL BACKEND
 function deleteTransactionObject(transactionId){
     //tomamos el array desed el localStorage y lo convertimos de formato json a objeto javascript
     let transactionObjArr = JSON.parse(localStorage.getItem("transactionData"));
@@ -214,3 +225,4 @@ function insertCategory(categoryName) {
     //con insertAdjacentHTML pasamos la posicion y el string a insertar
     selectElement.insertAdjacentHTML("beforeend", htmlToInsert)
 };
+
